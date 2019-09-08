@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_06_042708) do
+ActiveRecord::Schema.define(version: 2019_09_08_210821) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "memories", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.bigint "person_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["person_id"], name: "index_memories_on_person_id"
+  end
 
   create_table "people", force: :cascade do |t|
     t.string "first_name"
@@ -27,6 +36,16 @@ ActiveRecord::Schema.define(version: 2019_09_06_042708) do
     t.index ["user_id"], name: "index_people_on_user_id"
   end
 
+  create_table "photos", force: :cascade do |t|
+    t.string "title"
+    t.string "file_name"
+    t.string "description"
+    t.bigint "person_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["person_id"], name: "index_photos_on_person_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -37,5 +56,7 @@ ActiveRecord::Schema.define(version: 2019_09_06_042708) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "memories", "people"
   add_foreign_key "people", "users"
+  add_foreign_key "photos", "people"
 end
