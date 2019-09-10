@@ -4,5 +4,5 @@ class User < ApplicationRecord
   has_many :photos, through: :people
   has_many :memories, through: :people
 
-  validates :username, uniqueness: true
+  validates :username, uniqueness: true, presence: true
 end
