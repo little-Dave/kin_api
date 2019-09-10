@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2019_09_08_210821) do
     t.string "last_name"
     t.string "birthday"
     t.string "phone_number"
-    t.string "tile_image" 
+    t.string "tile_image"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
